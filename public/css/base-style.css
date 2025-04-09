@@ -1,0 +1,37 @@
+/* Buttons */
+
+a.navbar-btn {
+    /* Button Properties */
+    background-color: transparent;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 0 5px;
+
+    /* Button - Text Properties */
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+
+    /* Button - Behavior */
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+a.navbar-btn:hover {
+    background-color: #00008b33;
+    color: #ffffff;
+}
+
+/* Navbar */
+
+.custom-navbar {
+    border-radius: 25px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-bottom: 20px;
+
+    box-shadow: 0 2px 8px #0000001a;
+}

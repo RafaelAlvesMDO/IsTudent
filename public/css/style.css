@@ -1,0 +1,11 @@
+.bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar-spacer {
+    height: 70px;
+}
