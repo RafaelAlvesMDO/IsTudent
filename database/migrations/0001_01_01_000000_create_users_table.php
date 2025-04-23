@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone');
+            $table->string('cpf'); //->unique();
+            $table->date('birth_date');
             $table->string('password');
-            $table->rememberToken();
+            $table->enum('type', ['renter', 'landlord']);
+            $table->string('profile_image')->default('img/profile-image-default.jpg');
             $table->timestamps();
         });
 

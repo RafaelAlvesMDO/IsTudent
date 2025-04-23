@@ -25,12 +25,31 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                        @guest
                         <li class="nav-item">
-                            <a class="navbar-btn" href="{{ url('/login') }}">Login</a>
+                            <a class="navbar-btn" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item ms-2 me-3">
-                            <a class="navbar-btn" href="{{ url('/register') }}">Register</a>
+                            <a class="navbar-btn" href="{{ route('register') }}">Register</a>
                         </li>
+                        @endguest
+
+                        @auth
+                        <li class="nav-item ms-2 me-3 d-flex align-items-center">
+                            <form method="POST" action="{{ route('logout.submit') }}">
+                                @csrf
+                                <button class="navbar-btn-logout"
+                                    type="submit">Logout</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" href="#">
+                                <img src="{{ asset(auth()->user()->profile_image) }}"
+                                    alt="profile_image"
+                                    class="rounded-circle profile-icon">
+                            </a>
+                        </li>
+                        @endauth
                     </ul>
                 </div>
             </div>

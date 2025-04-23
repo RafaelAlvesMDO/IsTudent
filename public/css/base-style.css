@@ -1,7 +1,7 @@
 /* Buttons */
 
 a.navbar-btn {
-    /* Button Properties */
+    /* Button - Properties */
     background-color: transparent;
     padding: 5px 10px;
     border: none;
@@ -25,6 +25,31 @@ a.navbar-btn:hover {
     color: #ffffff;
 }
 
+.navbar-btn-logout {
+    /* Button - Properties */
+    background-color: transparent;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 0 5px;
+
+    /* Button - Text Properties */
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+
+    /* Button - Behavior */
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navbar-btn-logout:hover {
+    background-color: #00008b33;
+    color: #ffffff;
+}
+
 /* Navbar */
 
 .custom-navbar {
@@ -34,4 +59,13 @@ a.navbar-btn:hover {
     padding-bottom: 20px;
 
     box-shadow: 0 2px 8px #0000001a;
+}
+
+/* Profile */
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #808080;
 }

@@ -9,17 +9,21 @@
 @section('content')
 <div class="card-wrapper">
     <div class="card">
-        <h2>Welcome back</h2>
-        <p>Log in to start your experience</p>
+        <h2>Login</h2>
+        <p>Which are you?</p>
 
-        <input type="email" placeholder="Email address">
-        <input type="password" placeholder="Password">
+        <a href="{{ route('login-renter') }}" class="btn">Renter</a>
 
-        <a href="{{ route('home') }}" class="btn">Login</a>
+        <div class="divider">
+            <span>or</span>
+        </div>
 
-        <a href="#" class="forgot">Forgot password?</a>
+        <a href="{{ route('login-landlord') }}" class="btn">Landlord</a>
+
+        <hr>
+
         <p class="login-signup">Don't have an account?
-            <a href="{{ url('/register') }}">
+            <a href="{{ route('register') }}">
                 Sign up here
             </a>
         </p>

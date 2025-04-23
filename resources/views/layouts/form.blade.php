@@ -17,7 +17,7 @@
         <nav class="@yield('navbar-class')">
             <div class="container-fluid ms-3">
                 <img src="{{ asset('img/IsTudent-Brand.png') }}" alt="IsTudent-Icon">
-                <a class="navbar-brand" href="{{ url('/login') }}">IsStudent</a>
+                <a class="navbar-brand" href="{{ route('login') }}">IsStudent</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

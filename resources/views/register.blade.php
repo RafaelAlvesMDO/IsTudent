@@ -12,13 +12,13 @@
         <h2>Sign Up</h2>
         <p>Which are you?</p>
 
-        <a href="#" class="btn">Renter</a>
+        <a href="{{ route('register-renter') }}" class="btn">Renter</a>
 
         <div class="divider">
             <span>or</span>
         </div>
 
-        <a href="#" class="btn">Landlord</a>
+        <a href="{{ route('register-landlord') }}" class="btn">Landlord</a>
 
         <p class="terms">
             By signing up, you agree with the Terms and Conditions.
@@ -29,7 +29,7 @@
         <hr>
 
         <p class="login-signup">Already have an account?
-            <a href="{{ url('/login') }}">
+            <a href="{{ route('login') }}">
                 Log in here
             </a>
         </p>
