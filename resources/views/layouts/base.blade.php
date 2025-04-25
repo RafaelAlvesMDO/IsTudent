@@ -37,7 +37,7 @@
                         @endguest
 
                         @auth
-                        @if (Auth::user()->type === 'Landlord')
+                        @if (Auth::user()->type === 'landlord')
                         <li class="nav-item ms-2 me-3 d-flex align-items-center">
                             <a class="navbar-btn" href="{{ route('my-rooms') }}">
                                 My Rooms</a>
