@@ -1,0 +1,38 @@
+/* Background */
+
+.bg-login {
+    background-image: url('/img/Login-Bg-Image.jpg');
+}
+
+.bg-login-renter {
+    background-image: url('/img/Login-Renter-Bg-Image.jpg');
+}
+
+.bg-login-landlord {
+    background-image: url('/img/Login-Landlord-Bg-Image.jpg');
+}
+
+.bg-register {
+    background-image: url('/img/Register-Bg-Image.jpg');
+}
+
+.bg-register-renter {
+    background-image: url('/img/Register-Renter-Bg-Image.jpg');
+}
+
+.bg-register-landlord {
+    background-image: url('/img/Register-Landlord-Bg-Image.jpg');
+}
+
+/* Geral para fundo */
+.bg-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar-spacer {
+    height: 70px;
+}

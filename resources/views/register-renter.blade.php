@@ -58,15 +58,25 @@
             <div class="form-row">
                 <div class="form-group">
                     <p>College</p>
-                    <input type="text" placeholder="CESMAC" name="college" required>
+                    <select name="college_id" id="college_id" required>
+                        <option disabled selected>Select College</option>
+                        @foreach($colleges as $college)
+                        <option value="{{ $college->id }}">{{ $college->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <p>Course</p>
+                    <select name="course_id" id="course_id" required>
+                        <option disabled selected>Select Course</option>
+                        @foreach($courses as $course)
+                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <p>Period</p>
                     <input type="text" placeholder="5" name="period" required>
-                </div>
-                <div class="form-group">
-                    <p>Course</p>
-                    <input type="text" placeholder="Infomation Systems" name="course" required>
                 </div>
             </div>
 

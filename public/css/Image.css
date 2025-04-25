@@ -1,0 +1,23 @@
+/* Para manter os elementos alinhados lado a lado */
+.image-input-wrapper {
+    display: flex;
+    align-items: center;
+    /* Alinha verticalmente */
+    gap: 10px;
+    /* Espaço entre o input e a imagem */
+}
+
+/* Garantir que o input tenha uma altura fixa */
+.image-input-wrapper input {
+    height: 40px;
+    /* Ajuste a altura conforme necessário */
+    flex-shrink: 0;
+    /* Impede que o input encolha */
+}
+
+/* Imagem de pré-visualização */
+#imagePreview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}

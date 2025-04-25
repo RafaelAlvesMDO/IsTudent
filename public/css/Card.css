@@ -1,0 +1,109 @@
+/* Card */
+
+.card-wrapper {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px #0000001a;
+    width: 350px;
+    text-align: center;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.card p {
+    margin-bottom: 5px;
+    color: #777;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-signup {
+    margin-top: 2px;
+    font-size: 14px;
+}
+
+.forgot {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #03a9f4;
+    text-decoration: none;
+}
+
+.terms {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+/* Buttons */
+
+a.btn,
+button.btn {
+    width: 100%;
+    background-color: #03a9f4;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+a.btn:hover,
+button.btn:hover {
+    background-color: #0288d1;
+}
+
+/* Divider */
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #999;
+    margin-top: 5px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.divider:not(:empty)::before {
+    margin-right: 10px;
+}
+
+.divider:not(:empty)::after {
+    margin-left: 10px;
+}
+
+/* Landlord - Register */
+
+.card.card-register {
+    width: 800px;
+    max-width: 95%;
+}

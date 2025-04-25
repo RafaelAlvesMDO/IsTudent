@@ -19,8 +19,12 @@ Route::get('/template', [TemplateController::class, 'index']);
 
 // Rooms Routes
 
-Route::get('/', [RoomsController::class, 'list'])->name('home');
+// Route::get('/', [RoomsController::class, 'list'])->name('home');
+Route::get('/', [RoomsController::class, 'listAllRooms'])->name('home');
+Route::get('/my-rooms', [RoomsController::class, 'listLandlordRooms'])->name('my-rooms')->middleware('auth');
 Route::get('/rooms/{Name}', [RoomsController::class, 'detail']);
+Route::get('/register-room', [RoomsController::class, 'showRegisterRoomForm'])->name('register-room');
+Route::post('/register-room', [RoomsController::class, 'registerRoom'])->name('register.room.submit');
 
 // Register Routes
 

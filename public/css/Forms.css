@@ -1,0 +1,57 @@
+/* Layout em linha das seções de inputs */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+/* Permitir que os inputs se expandam igualmente nas linhas */
+.form-row input {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    appearance: none;
+}
+
+.form-row select {
+    flex: 1;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.form-group p {
+    color: #000;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.checkbox-label {
+    display: inline-block !important;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    gap: 10px;
+}

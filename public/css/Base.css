@@ -1,20 +1,30 @@
+/* Geral */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
 /* Buttons */
 
 a.navbar-btn {
-    /* Button - Properties */
     background-color: transparent;
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
     margin: 0 5px;
-
-    /* Button - Text Properties */
     color: #ffffff;
     text-decoration: none;
     text-align: center;
     font-weight: bold;
-
-    /* Button - Behavior */
     display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -26,20 +36,15 @@ a.navbar-btn:hover {
 }
 
 .navbar-btn-logout {
-    /* Button - Properties */
     background-color: transparent;
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
     margin: 0 5px;
-
-    /* Button - Text Properties */
     color: #ffffff;
     text-decoration: none;
     text-align: center;
     font-weight: bold;
-
-    /* Button - Behavior */
     display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -57,7 +62,6 @@ a.navbar-btn:hover {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     padding-bottom: 20px;
-
     box-shadow: 0 2px 8px #0000001a;
 }
 
@@ -68,4 +72,9 @@ a.navbar-btn:hover {
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid #808080;
+}
+
+.checkbox-label {
+    display: inline-block;
+    margin-right: 10px;
 }

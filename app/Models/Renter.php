@@ -12,13 +12,23 @@ class Renter extends Model
     protected $fillable = [
         'user_id',
         'matriculation',
-        'college',
+        'college_id',
         'period',
-        'course',
+        'course_id',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function college()
+    {
+        return $this->belongsTo(College::class);
     }
 }

@@ -28,6 +28,16 @@ class User extends Authenticatable
         'profile_image',
     ];
 
+    public function landlord()
+    {
+        return $this->hasOne(Landlord::class);
+    }
+
+    public function renter()
+    {
+        return $this->hasOne(Renter::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

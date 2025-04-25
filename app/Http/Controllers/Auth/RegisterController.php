@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Models\Landlord;
 use App\Models\Renter;
+use App\Models\College;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +26,10 @@ class RegisterController extends Controller
 
     public function showRenterForm()
     {
-        return view('register-renter');
+        $courses = Course::orderBy('name')->get();
+        $colleges = College::orderBy('name')->get();
+
+        return view('register-renter', compact('courses', 'colleges'));
     }
 
     public function registerLandlord(Request $request)
@@ -52,21 +57,22 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'cpf' => $request->cpf,
-            'birth_date' => $request->birth_date,
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'cpf' => $validated['cpf'],
+            'birth_date' => $validated['birth_date'],
             'password' => Hash::make($request->password),
-            'type' => 'landlord',
+            'type' => $type,
+            'profile_image' => 'img/profile-image-default.jpg'
         ]);
 
         Landlord::create([
             'user_id' => $user->id,
-            'bank_code' => $request->bank_code,
-            'branch' => $request->branch,
-            'account_number' => $request->account_number,
-            'account_type' => $request->account_type,
+            'bank_code' => $validated['bank_code'],
+            'branch' => $validated['branch'],
+            'account_number' => $validated['account_number'],
+            'account_type' => $validated['account_type'],
         ]);
 
         return redirect()->route('login-landlord')->with('success', 'User registered successfully!');
@@ -91,28 +97,28 @@ class RegisterController extends Controller
             'birth_date' => ['required', 'date'],
             'password' => ['required', 'string', 'confirmed', 'min:8'],
             'matriculation' => ['required', 'alpha_num', 'digits_between:4,20'],
-            'college' => ['required', 'string', 'max:100'],
+            'college_id' => ['required', 'exists:colleges,id'],
             'period' => ['required', 'string', 'between:1,10'],
-            'course' => ['required', 'string', 'max:100'],
+            'course_id' => ['required', 'exists:courses,id'],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'cpf' => $request->cpf,
-            'birth_date' => $request->birth_date,
-            'password' => Hash::make($request->password),
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'cpf' => $validated['cpf'],
+            'birth_date' => $validated['birth_date'],
+            'password' => Hash::make($validated['password']),
             'type' => $type,
             'profile_image' => 'img/profile-image-default.jpg'
         ]);
 
         Renter::create([
             'user_id' => $user->id,
-            'matriculation' => $request->matriculation,
-            'college' => $request->college,
-            'period' => $request->period,
-            'course' => $request->course,
+            'matriculation' => $validated['matriculation'],
+            'college_id' => $validated['college_id'],
+            'period' => $validated['period'],
+            'course_id' => $validated['course_id'],
         ]);
 
         return redirect()->route('login-renter')->with('success', 'User registered successfully!');
