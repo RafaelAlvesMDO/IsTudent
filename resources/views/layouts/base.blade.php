@@ -37,6 +37,7 @@
                         @endguest
 
                         @auth
+                        @if (Auth::user()->type === 'Landlord')
                         <li class="nav-item ms-2 me-3 d-flex align-items-center">
                             <a class="navbar-btn" href="{{ route('my-rooms') }}">
                                 My Rooms</a>
@@ -45,6 +46,7 @@
                             <a class="navbar-btn" href="{{ route('register-room') }}">
                                 Register Rooms</a>
                         </li>
+                        @endif
                         <li class="nav-item ms-2 me-3 d-flex align-items-center">
                             <form method="POST" action="{{ route('logout.submit') }}">
                                 @csrf

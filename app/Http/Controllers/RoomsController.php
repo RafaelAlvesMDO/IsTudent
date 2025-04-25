@@ -79,10 +79,10 @@ class RoomsController extends Controller
         return redirect()->route('home')->with('success', 'Room registered successfully!');
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
 
     public function listAllRooms()
