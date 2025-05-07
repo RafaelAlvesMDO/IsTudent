@@ -4,6 +4,8 @@
 
 @section('body-class', 'bg-image bg-login-renter d-flex flex-column min-vh-100')
 
+@section('logo', 'img/IsTudent-Logo.png')
+
 @section('navbar-class', 'navbar navbar-white bg-transparent navbar-expand-lg')
 
 @section('content')

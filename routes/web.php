@@ -47,3 +47,21 @@ Route::post('/login-renter', [LoginController::class, 'LoginRenter'])->name('log
 // Account Routes
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout.submit');
+
+// Test Routes
+
+Route::get('/test', function () {
+    return view('layouts/base-test');
+});
+
+Route::get('/content-test', function () {
+    return view('tests/home-test');
+});
+
+Route::get('/register-room-test', function () {
+    return view('tests/register-room-test');
+});
+
+Route::get('/landlord-rooms-test', function () {
+    return view('tests/landlord-rooms-test');
+});
