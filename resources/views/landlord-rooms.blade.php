@@ -3,7 +3,13 @@
 @section('title', 'IsTudent')
 
 @section('content')
-<div class="grid grid-cols-4 justify-items-center gap-2 p-4 mx-8">
+<div class="text-center mt-12">
+    <h1 class="text-3xl font-bold text-black">
+        My Rooms
+    </h1>
+</div>
+
+<div class="grid grid-cols-4 justify-items-center gap-4 p-4 my-12 mx-64">
     @forelse($rooms as $room)
     <div class="max-w-sm bg-white rounded-lg shadow overflow-hidden mb-4">
         <img class="w-[300px] h-48 object-cover" src="{{ asset('storage/' . $room->image) }}"

@@ -3,9 +3,14 @@
 @section('title', 'Register - Room')
 
 @section('content')
-<div class="flex justify-center items-center min-h-screen bg-white p-6">
+<div class="text-center mt-12">
+    <h1 class="text-3xl font-bold text-black">
+        Register
+    </h1>
+</div>
+
+<div class="flex justify-center items-center my-4 bg-white p-6">
     <div class="w-full max-w-5xl bg-white rounded-lg shadow-lg p-8 border border-gray-300">
-        <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
 
         <form method="POST" action="#" enctype="multipart/form-data" class="space-y-6">
             @csrf
@@ -132,7 +137,7 @@
                     <hr class="flex-grow border-t border-gray-400" />
                 </div>
 
-                <a href="{{ route('home') }}"
+                <a href="{{ route('profile') }}"
                     class="w-full bg-gray-600 hover:bg-gray-700 transition 
                     text-center text-white px-6 py-2 rounded">
                     Cancel

@@ -19,10 +19,9 @@ Route::get('/template', [TemplateController::class, 'index']);
 
 // Rooms Routes
 
-// Route::get('/', [RoomsController::class, 'list'])->name('home');
 Route::get('/', [RoomsController::class, 'listAllRooms'])->name('home');
+Route::get('/room/{title}', [RoomsController::class, 'detail'])->name('room-info');
 Route::get('/my-rooms', [RoomsController::class, 'listLandlordRooms'])->name('my-rooms')->middleware('auth');
-// Route::get('/rooms/{Name}', [RoomsController::class, 'detail'])->middleware('auth');
 Route::get('/register-room', [RoomsController::class, 'showRegisterRoomForm'])->name('register-room')->middleware('auth');
 Route::post('/register-room', [RoomsController::class, 'registerRoom'])->name('register.room.submit');
 
@@ -46,6 +45,9 @@ Route::post('/login-renter', [LoginController::class, 'LoginRenter'])->name('log
 
 // Account Routes
 
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout.submit');
 
 // Test Routes

@@ -26,7 +26,7 @@
             <p class="text-gray-600 underline font-semibold mt-2 pb-4">From
                 R${{ number_format($room->monthly_price, 2, ',', '.') }} /month</p>
             <a class="mt-4 bg-blue-400 hover:bg-blue-500 transition
-            text-white px-4 py-2 rounded" href="#">
+            text-white px-4 py-2 rounded" href="{{ route('room-info', ['title' => $room->title]) }}">
                 Rent Room
             </a>
         </div>

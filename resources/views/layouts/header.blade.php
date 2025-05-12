@@ -12,25 +12,6 @@
                 <i class="fa-solid fa-door-open"></i> Rooms
             </span>
         </a>
-        @auth
-        @if (Auth::user()->type === 'landlord')
-        <a href="{{ route('my-rooms') }}" class="group inline-flex items-center gap-2 text-gray-600 
-        hover:text-gray-700">
-            <span class="inline-flex items-center gap-2 border-b-2 border-transparent 
-            group-hover:border-gray-700 pb-0.5">
-                <i class="fa-solid fa-door-closed"></i> My Rooms
-            </span>
-        </a>
-        <a href="{{ route('register-room') }}" class="group inline-flex items-center gap-2 text-gray-600 
-        hover:text-gray-700">
-            <span class="inline-flex items-center gap-2 border-b-2 border-transparent 
-            group-hover:border-gray-700 pb-0.5">
-                <i class="fa-solid fa-pen-to-square"></i> Register Room
-            </span>
-        </a>
-        @endif
-        @endauth
-
         <a href="#" class="group inline-flex items-center gap-2 text-gray-600 hover:text-gray-700">
             <span class="inline-flex items-center gap-2 border-b-2 border-transparent group-hover:border-gray-700 pb-0.5">
                 <i class="fa-solid fa-circle-info"></i> About
@@ -39,18 +20,6 @@
     </div>
 
     <div class="absolute bottom-0 right-4 flex items-end gap-6">
-        @auth
-        <form action="{{ route('logout.submit') }}" method="POST" class="inline">
-            @csrf
-            <button type="submit" class="group inline-flex items-center gap-2 text-gray-600 
-            hover:text-gray-700 bg-transparent border-0">
-                <span class="inline-flex items-center gap-2 border-b-2 border-transparent 
-                group-hover:border-gray-700 pb-0.5">
-                    <i class="fa-solid fa-right-from-bracket"></i> Logout
-                </span>
-            </button>
-        </form>
-        @endauth
         @guest
         <a href="{{ route('login') }}" class="group inline-flex items-center gap-2 text-gray-600 hover:text-gray-700">
             <span class="inline-flex items-center gap-2 border-b-2 border-transparent 
@@ -67,9 +36,8 @@
         @endguest
 
         @auth
-        <a href="#" class="group inline-flex items-center gap-2 pb-1">
-            <img src="img/profile-image-default.jpg"
-                alt="profile_image"
+        <a href="{{ route('profile') }}" class="group inline-flex items-center gap-2 pb-1">
+            <img src="img/profile-image-default.jpg" alt="profile_image"
                 class="w-9 h-9 rounded-full border-2 border-gray-700 hover:border-gray-700 transition duration-200">
         </a>
         @endauth
