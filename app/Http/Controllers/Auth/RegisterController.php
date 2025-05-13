@@ -16,13 +16,9 @@ use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
-    public function showRegister($name)
+    public function showRegister()
     {
-        $user = User::where('name', $name)
-            ->with('landlord', 'renter')
-            ->firstOrFail();
-
-        return view('register', compact('user'));
+        return view('register');
     }
 
     public function showLandlordForm()
