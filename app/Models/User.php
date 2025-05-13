@@ -26,6 +26,8 @@ class User extends Authenticatable
         'password',
         'type',
         'profile_image',
+        'city_id',
+        'state_id',
     ];
 
     public function landlord()
@@ -36,6 +38,16 @@ class User extends Authenticatable
     public function renter()
     {
         return $this->hasOne(Renter::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
     }
 
     /**

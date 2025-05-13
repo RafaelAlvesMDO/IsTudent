@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <p>Phone Number</p>
-                    <input type="tel" placeholder="82911112222" name="phone" required>
+                    <input type="tel" placeholder="5582911112222" name="phone" required>
                 </div>
             </div>
 
@@ -72,6 +72,27 @@
                         <option disabled selected>Select Type</option>
                         <option value="checking">Checking</option>
                         <option value="savings">Savings</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <p>City</p>
+                    <select name="city_id" id="city_id" required>
+                        <option disabled selected>Select your City</option>
+                        @foreach($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <p>State</p>
+                    <select name="state_id" id="state_id" required>
+                        <option disabled selected>Select your State</option>
+                        @foreach($states as $state)
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

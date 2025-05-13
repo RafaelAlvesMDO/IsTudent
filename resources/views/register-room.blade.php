@@ -110,6 +110,28 @@
                 </div>
             </div>
 
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="md:col-span-1">
+                    <p class="font-medium mb-1">City</p>
+                    <select name="city_id" id="city_id" class="w-full border rounded px-3 py-2 text-sm" required>
+                        <option disabled selected>Select your City</option>
+                        @foreach($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="md:col-span-1">
+                    <p class="font-medium mb-1">State</p>
+                    <select name="state_id" id="state_id" class="w-full border rounded px-3 py-2 text-sm" required>
+                        <option disabled selected>Select your State</option>
+                        @foreach($states as $state)
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <!-- Features -->
             <div>
                 <p class="font-medium mb-2">Features:</p>
@@ -137,7 +159,7 @@
                     <hr class="flex-grow border-t border-gray-400" />
                 </div>
 
-                <a href="{{ route('profile') }}"
+                <a href="{{ route('profile', auth()->user()->name) }}"
                     class="w-full bg-gray-600 hover:bg-gray-700 transition 
                     text-center text-white px-6 py-2 rounded">
                     Cancel

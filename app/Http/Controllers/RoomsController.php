@@ -9,6 +9,8 @@ use App\Models\Room;
 use App\Models\Course;
 use App\Models\Feature;
 use App\Models\Landlord;
+use App\Models\City;
+use App\Models\State;
 use App\Http\Controllers\Controller;
 
 class RoomsController extends Controller
@@ -28,10 +30,12 @@ class RoomsController extends Controller
 
     public function showRegisterRoomForm()
     {
+        $cities = City::orderBy('name')->get();
+        $states = State::orderBy('name')->get();
         $features = Feature::orderBy('name')->get();
         $courses = Course::orderBy('name')->get();
 
-        return view('register-room', compact('courses', 'features'));
+        return view('register-room', compact('courses', 'features', 'cities', 'states'));
     }
 
     // public function showDetailRoom()
@@ -56,6 +60,10 @@ class RoomsController extends Controller
             'rules' => ['nullable', 'string', 'max:500'],
             'course_id' => ['required', 'exists:courses,id'],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:8192'],
+            'features' => ['nullable', 'array'],
+            'features.*' => ['exists:features,id'],
+            'city_id' => ['required', 'exists:cities,id'],
+            'state_id' => ['required', 'exists:states,id'],
         ]);
 
         if (!isset($validated['course_id'])) {
@@ -76,6 +84,8 @@ class RoomsController extends Controller
             'course_id' => $validated['course_id'],
             'image' => $imagePath,
             'landlord_id' => $landlord->id,
+            'city_id' => $validated['city_id'],
+            'state_id' => $validated['state_id'],
         ]);
 
         if (isset($validated['features'])) {
@@ -114,9 +124,13 @@ class RoomsController extends Controller
 
     public function detail($title)
     {
-        $room = Room::where('title', $title)->firstOrFail();
+        $room = Room::where('title', $title)
+            ->with('landlord.user', 'features')
+            ->firstOrFail();
+
         return view('room-detail', compact('room'));
     }
+
 
     /**
      * Store a newly created resource in storage.

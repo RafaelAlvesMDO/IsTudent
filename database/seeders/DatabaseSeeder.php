@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             CollegeSeeder::class,
             CourseSeeder::class,
             FeatureSeeder::class,
+            CitySeeder::class,
+            StateSeeder::class,
+            UserSeeder::class,
+            RoomSeeder::class,
         ]);
     }
 }

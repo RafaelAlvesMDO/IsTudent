@@ -23,6 +23,8 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->string('image')->nullable();
             $table->foreignId('landlord_id')->constrained()->onDelete('cascade');
+            $table->foreignId('city_id')->constrained('cities');
+            $table->foreignId('state_id')->constrained('states');
             $table->timestamps();
         });
     }

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->enum('type', ['renter', 'landlord']);
             $table->string('profile_image')->default('img/profile-image-default.jpg');
+            $table->foreignId('city_id')->constrained('cities');
+            $table->foreignId('state_id')->constrained('states');
             $table->timestamps();
         });
 

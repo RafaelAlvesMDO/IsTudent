@@ -20,7 +20,24 @@ class Room extends Model
         'course_id',
         'image',
         'landlord_id',
+        'city_id',
+        'state_id',
     ];
+
+    public function landlord()
+    {
+        return $this->belongsTo(Landlord::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
 
     public function course()
     {

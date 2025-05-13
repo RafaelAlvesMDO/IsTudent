@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AccountController extends Controller
 {
-    public function showProfile()
+    public function showProfile($name)
     {
-        // Show Profile View
+        $user = User::where('name', $name)
+            ->with('landlord', 'renter')
+            ->firstOrFail();
+
+        return view('profile', compact('user'));
     }
 
     public function showEditProfile()

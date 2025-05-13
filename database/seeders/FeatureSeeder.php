@@ -14,12 +14,18 @@ class FeatureSeeder extends Seeder
     public function run(): void
     {
         $features = [
-            'Air Conditioning',
+            'Fan',
             'Wi-Fi',
-            'Washing machine',
-            'TV',
-            'Single bed',
-            'Parking spot'
+            'Television',
+            'Air Conditioning',
+            'Private Bathroom',
+            'Desk',
+            'Two Beds',
+            'Single Bed',
+            'Double Bed',
+            'Curtains',
+            'Wardrobe',
+            'Bedside Table',
         ];
 
         foreach ($features as $featureName) {

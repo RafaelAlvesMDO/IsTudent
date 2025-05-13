@@ -9,27 +9,38 @@ use App\Models\College;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
-    public function showRegister()
+    public function showRegister($name)
     {
-        return view('register');
+        $user = User::where('name', $name)
+            ->with('landlord', 'renter')
+            ->firstOrFail();
+
+        return view('register', compact('user'));
     }
 
     public function showLandlordForm()
     {
-        return view('register-landlord');
+        $cities = City::orderBy('name')->get();
+        $states = State::orderBy('name')->get();
+
+        return view('register-landlord', compact('cities', 'states'));
     }
 
     public function showRenterForm()
     {
         $courses = Course::orderBy('name')->get();
         $colleges = College::orderBy('name')->get();
+        $cities = City::orderBy('name')->get();
+        $states = State::orderBy('name')->get();
 
-        return view('register-renter', compact('courses', 'colleges'));
+        return view('register-renter', compact('courses', 'colleges', 'cities', 'states'));
     }
 
     public function registerLandlord(Request $request)
@@ -39,7 +50,7 @@ class RegisterController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'string', 'email', 'max:100'],
-            'phone' => ['required', 'string', 'digits:11'],
+            'phone' => ['required', 'string', 'digits:13'],
             'cpf' => [
                 'required',
                 'string',
@@ -54,6 +65,8 @@ class RegisterController extends Controller
             'branch' => ['required', 'alpha_num', 'digits:5'],
             'account_number' => ['required', 'alpha_num', 'digits:8'],
             'account_type' => ['required', 'string', 'in:checking,savings'],
+            'city_id' => ['required', 'exists:cities,id'],
+            'state_id' => ['required', 'exists:states,id'],
         ]);
 
         $user = User::create([
@@ -64,7 +77,9 @@ class RegisterController extends Controller
             'birth_date' => $validated['birth_date'],
             'password' => Hash::make($request->password),
             'type' => $type,
-            'profile_image' => 'img/profile-image-default.jpg'
+            'profile_image' => 'img/profile-image-default.jpg',
+            'city_id' => $validated['city_id'],
+            'state_id' => $validated['state_id'],
         ]);
 
         Landlord::create([
@@ -85,7 +100,7 @@ class RegisterController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'email' => ['required', 'string', 'email', 'max:100'],
-            'phone' => ['required', 'string', 'digits:11'],
+            'phone' => ['required', 'string', 'digits:13'],
             'cpf' => [
                 'required',
                 'string',
@@ -100,6 +115,8 @@ class RegisterController extends Controller
             'college_id' => ['required', 'exists:colleges,id'],
             'period' => ['required', 'string', 'between:1,10'],
             'course_id' => ['required', 'exists:courses,id'],
+            'city_id' => ['required', 'exists:cities,id'],
+            'state_id' => ['required', 'exists:states,id'],
         ]);
 
         $user = User::create([
@@ -110,7 +127,9 @@ class RegisterController extends Controller
             'birth_date' => $validated['birth_date'],
             'password' => Hash::make($validated['password']),
             'type' => $type,
-            'profile_image' => 'img/profile-image-default.jpg'
+            'profile_image' => 'img/profile-image-default.jpg',
+            'city_id' => $validated['city_id'],
+            'state_id' => $validated['state_id'],
         ]);
 
         Renter::create([

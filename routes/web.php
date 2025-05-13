@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TemplateController;
@@ -45,9 +46,7 @@ Route::post('/login-renter', [LoginController::class, 'LoginRenter'])->name('log
 
 // Account Routes
 
-Route::get('/profile', function () {
-    return view('profile');
-})->name('profile');
+Route::get('/profile/{name}', [AccountController::class, 'showProfile'])->name('profile');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout.submit');
 
 // Test Routes
