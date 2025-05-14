@@ -50,6 +50,16 @@
                             text-center text-white px-6 py-2 rounded-lg">
                 <i class="fa-solid fa-pen-to-square"></i> Register Room
             </a>
+            <a href="#"
+                class="w-full bg-sky-500 hover:bg-sky-600 transition 
+                            text-center text-white px-6 py-2 rounded-lg">
+                <i class="fa-solid fa-calendar-check"></i> Reserves
+            </a>
+            <a href="{{ route('reserve-room') }}"
+                class="w-full bg-sky-500 hover:bg-sky-600 transition 
+                            text-center text-white px-6 py-2 rounded-lg">
+                <i class="fa-solid fa-key"></i> Reserve Room
+            </a>
             @endif
 
             <a href="#"

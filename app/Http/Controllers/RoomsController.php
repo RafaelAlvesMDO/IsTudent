@@ -12,6 +12,7 @@ use App\Models\Landlord;
 use App\Models\City;
 use App\Models\State;
 use App\Models\User;
+use App\Models\Reserve;
 use App\Http\Controllers\Controller;
 
 class RoomsController extends Controller
@@ -37,6 +38,14 @@ class RoomsController extends Controller
         $courses = Course::orderBy('name')->get();
 
         return view('register-room', compact('courses', 'features', 'cities', 'states'));
+    }
+
+    public function showReserveRoomForm()
+    {
+        $landlord = Auth::user()->landlord;
+        $rooms = Room::where('landlord_id', $landlord->id)->get();
+
+        return view('reserve-room', compact('landlord', 'rooms'));
     }
 
     // public function showDetailRoom()
@@ -92,6 +101,46 @@ class RoomsController extends Controller
         if (isset($validated['features'])) {
             $room->features()->attach($validated['features']);
         }
+
+        return redirect()->route('home')->with('success', 'Room registered successfully!');
+    }
+
+    public function reserveRoom(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'cpf' => ['required', 'string', 'digits:11'],
+            'matriculation' => ['required', 'alpha_num', 'digits_between:4,20'],
+            'email' => ['required', 'string', 'email', 'max:100'],
+            'phone' => ['required', 'string', 'digits:13'],
+            'renter_quantity' => ['required', 'numeric'],
+            'check_in_date' => ['required', 'date'],
+            'check_out_date' => ['required', 'date'],
+            'monthly_price' => ['required', 'numeric'],
+            'payment_form' => ['required', 'string', 'in:Credit Card,Debit Card,Bank Slip,PIX'],
+            'room_id' => ['required', 'exists:rooms,id'],
+        ]);
+
+        $landlord = Landlord::where('user_id', Auth::id())->first();
+
+        if (!$landlord) {
+            return redirect()->back()->withErrors(['error' => 'Landlord not found.']);
+        }
+
+        $reserve = Reserve::create([
+            'name' => $validated['name'],
+            'cpf' => $validated['cpf'],
+            'matriculation' => $validated['matriculation'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'renter_quantity' => $validated['renter_quantity'],
+            'check_in_date' => $validated['check_in_date'],
+            'check_out_date' => $validated['check_out_date'],
+            'monthly_price' => $validated['monthly_price'],
+            'payment_form' => $validated['payment_form'],
+            'room_id' => $validated['room_id'],
+            'landlord_id' => $landlord->id,
+        ]);
 
         return redirect()->route('home')->with('success', 'Room registered successfully!');
     }

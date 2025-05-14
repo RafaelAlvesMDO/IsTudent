@@ -23,8 +23,12 @@ Route::get('/template', [TemplateController::class, 'index']);
 Route::get('/', [RoomsController::class, 'listAllRooms'])->name('home');
 Route::get('/room/{title}', [RoomsController::class, 'detail'])->name('room-info');
 Route::get('/my-rooms', [RoomsController::class, 'listLandlordRooms'])->name('my-rooms')->middleware('auth');
+
 Route::get('/register-room', [RoomsController::class, 'showRegisterRoomForm'])->name('register-room')->middleware('auth');
 Route::post('/register-room', [RoomsController::class, 'registerRoom'])->name('register.room.submit');
+
+Route::get('/reserve-room', [RoomsController::class, 'showReserveRoomForm'])->name('reserve-room')->middleware('auth');
+Route::post('/reserve-room', [RoomsController::class, 'reserveRoom'])->name('reserve.room.submit');
 
 // Register Routes
 
