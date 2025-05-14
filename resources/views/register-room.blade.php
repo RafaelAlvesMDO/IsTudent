@@ -159,7 +159,7 @@
                     <hr class="flex-grow border-t border-gray-400" />
                 </div>
 
-                <a href="{{ route('profile', auth()->user()->name) }}"
+                <a href="{{ route('profile', ['id' => auth()->user()->id]) }}"
                     class="w-full bg-gray-600 hover:bg-gray-700 transition 
                     text-center text-white px-6 py-2 rounded">
                     Cancel

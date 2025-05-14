@@ -11,6 +11,7 @@ use App\Models\Feature;
 use App\Models\Landlord;
 use App\Models\City;
 use App\Models\State;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 
 class RoomsController extends Controller

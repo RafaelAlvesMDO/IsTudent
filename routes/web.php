@@ -46,7 +46,7 @@ Route::post('/login-renter', [LoginController::class, 'LoginRenter'])->name('log
 
 // Account Routes
 
-Route::get('/profile/{name}', [AccountController::class, 'showProfile'])->name('profile');
+Route::get('/profile/{id}', [AccountController::class, 'showProfile'])->name('profile');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout.submit');
 
 // Test Routes

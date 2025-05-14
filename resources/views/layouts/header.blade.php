@@ -36,7 +36,7 @@
         @endguest
 
         @auth
-        <a href="{{ route('profile', auth()->user()->name) }}" class="group inline-flex items-center gap-2 pb-1">
+        <a href="{{ route('profile', ['id' => auth()->user()->id]) }}" class="group inline-flex items-center gap-2 pb-1">
             <img src="{{ asset('storage/profiles-img/profile-image-default.jpg') }}" alt="profile_image"
                 class="w-9 h-9 rounded-full border-2 border-gray-700 hover:border-gray-700 transition duration-200">
         </a>

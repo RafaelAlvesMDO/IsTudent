@@ -22,7 +22,7 @@
 
         <hr class="my-3 text-gray-400">
 
-        <a href="{{ route('profile', $room->landlord->user->name) }}">
+        <a href="{{ route('profile', $room->landlord->user->id) }}">
             <p class="text-gray-600 hover:text-gray-700"><strong>Landlord:</strong> {{ $room->landlord->user->name }}</p>
         </a>
 

@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'IsTudent')
+@section('title', 'Your Rooms')
 
 @section('content')
 <div class="text-center mt-12">
