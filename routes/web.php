@@ -27,6 +27,7 @@ Route::get('/my-rooms', [RoomsController::class, 'listLandlordRooms'])->name('my
 Route::get('/register-room', [RoomsController::class, 'showRegisterRoomForm'])->name('register-room')->middleware('auth');
 Route::post('/register-room', [RoomsController::class, 'registerRoom'])->name('register.room.submit');
 
+Route::get('/my-reserves', [RoomsController::class, 'listReserves'])->name('my-reserves')->middleware('auth');
 Route::get('/reserve-room', [RoomsController::class, 'showReserveRoomForm'])->name('reserve-room')->middleware('auth');
 Route::post('/reserve-room', [RoomsController::class, 'reserveRoom'])->name('reserve.room.submit');
 

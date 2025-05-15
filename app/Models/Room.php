@@ -9,6 +9,9 @@ class Room extends Model
 {
     use HasFactory;
 
+    public const STATUS_AVAILABLE = 'Available';
+    public const STATUS_RESERVED = 'Reserved';
+
     protected $fillable = [
         'title',
         'address',
@@ -22,6 +25,7 @@ class Room extends Model
         'landlord_id',
         'city_id',
         'state_id',
+        'status',
     ];
 
     public function landlord()

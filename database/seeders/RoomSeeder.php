@@ -38,6 +38,7 @@ class RoomSeeder extends Seeder
             'landlord_id' => $landlord->id,
             'city_id' => $city->id,
             'state_id' => $state->id,
+            'status' => Room::STATUS_AVAILABLE,
         ]);
 
         $wifi = Feature::where('name', 'Wi-Fi')->first();

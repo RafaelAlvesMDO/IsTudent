@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignId('landlord_id')->constrained()->onDelete('cascade');
             $table->foreignId('city_id')->constrained('cities');
             $table->foreignId('state_id')->constrained('states');
+            $table->enum('status', ['Available', 'Reserved']);
             $table->timestamps();
         });
     }

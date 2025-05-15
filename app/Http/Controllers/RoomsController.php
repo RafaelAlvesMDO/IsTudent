@@ -20,15 +20,6 @@ class RoomsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function showRoom($id)
-    // {
-    //     $room = Room::findOrFail($id);
-
-    //     // Decodifica o JSON das features para um array (opcional, pode ser feito direto na view também)
-    //     $features = json_decode($room->features, true);
-
-    //     return view('');
-    // }
 
     public function showRegisterRoomForm()
     {
@@ -40,19 +31,73 @@ class RoomsController extends Controller
         return view('register-room', compact('courses', 'features', 'cities', 'states'));
     }
 
+    public function listAllRooms()
+    {
+        $rooms = Room::where('status', Room::STATUS_AVAILABLE)
+            ->get();
+        return view('home', compact('rooms'));
+    }
+
+    public function listLandlordRooms()
+    {
+        $userId = Auth::id();
+
+        $landlord = Landlord::where('user_id', $userId)->first();
+
+        if ($landlord) {
+            $rooms = Room::where('landlord_id', $landlord->id)->get();
+        } else {
+            $rooms = collect();
+        }
+
+        return view('landlord-rooms', compact('rooms'));
+    }
+
+    public function detail($title)
+    {
+        $room = Room::where('title', $title)
+            ->with('landlord.user', 'features')
+            ->firstOrFail();
+
+        return view('room-detail', compact('room'));
+    }
+
     public function showReserveRoomForm()
     {
         $landlord = Auth::user()->landlord;
-        $rooms = Room::where('landlord_id', $landlord->id)->get();
+        $rooms = Room::where('landlord_id', $landlord->id)
+            ->where('status', Room::STATUS_AVAILABLE)
+            ->get();
 
         return view('reserve-room', compact('landlord', 'rooms'));
     }
 
-    // public function showDetailRoom()
-    // {
-    //     $room = Room::all();
-    //     return view('detail-room', compact('room'));
-    // }
+    public function listReserves()
+    {
+        $user = Auth::user();
+
+        if ($user->type === 'landlord') {
+            $landlord = $user->landlord;
+            if (!$landlord) {
+                return redirect()->back()->withErrors(['error' => 'Landlord não encontrado.']);
+            }
+
+            $reserves = Reserve::where('landlord_id', $landlord->id)
+                ->with('room')
+                ->orderByDesc('created_at')
+                ->get();
+        } elseif ($user->type === 'renter') {
+            $reserves = Reserve::where('email', $user->email)
+                ->with('room')
+                ->orderByDesc('created_at')
+                ->get();
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Tipo de usuário inválido.']);
+        }
+
+        return view('reserves', compact('reserves', 'user'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -96,6 +141,7 @@ class RoomsController extends Controller
             'landlord_id' => $landlord->id,
             'city_id' => $validated['city_id'],
             'state_id' => $validated['state_id'],
+            'status' => Room::STATUS_AVAILABLE,
         ]);
 
         if (isset($validated['features'])) {
@@ -142,45 +188,12 @@ class RoomsController extends Controller
             'landlord_id' => $landlord->id,
         ]);
 
+        $room = Room::findOrFail($validated['room_id']);
+        $room->status = Room::STATUS_RESERVED;
+        $room->save();
+
         return redirect()->route('home')->with('success', 'Room registered successfully!');
     }
-
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-
-    public function listAllRooms()
-    {
-        $rooms = Room::all();
-        return view('home', compact('rooms'));
-    }
-
-    public function listLandlordRooms()
-    {
-        $userId = Auth::id();
-
-        $landlord = Landlord::where('user_id', $userId)->first();
-
-        if ($landlord) {
-            $rooms = Room::where('landlord_id', $landlord->id)->get();
-        } else {
-            $rooms = collect();
-        }
-
-        return view('landlord-rooms', compact('rooms'));
-    }
-
-    public function detail($title)
-    {
-        $room = Room::where('title', $title)
-            ->with('landlord.user', 'features')
-            ->firstOrFail();
-
-        return view('room-detail', compact('room'));
-    }
-
 
     /**
      * Store a newly created resource in storage.
@@ -221,18 +234,4 @@ class RoomsController extends Controller
     {
         //
     }
-
-    // public function list()
-    // {
-    //     $rooms = [
-    //         1 => ['Image' => 'img/Trastevere-Room-Image.jpg', 'Name' => 'Trastevere Room | Rome - Italy', 'Price' => 120],
-    //         2 => ['Image' => 'img/Malasaña-Room-Image.jpg', 'Name' => 'Malasana Room | Madrid - Spain', 'Price' => 100],
-    //         3 => ['Image' => 'img/VilaMadalena-Room-Image.jpg', 'Name' => 'Vila Madalena Room | São Paulo - Brazil', 'Price' => 30],
-    //         4 => ['Image' => 'img/LeMarais-Room-Image.jpg', 'Name' => 'Le Marais Room | Paris - France', 'Price' => 150],
-    //         5 => ['Image' => 'img/Kreuzberg-Room-Image.jpg', 'Name' => 'Kreuzberg Room | Berlin - Germany', 'Price' => 60],
-    //         6 => ['Image' => 'img/BrooklynHeights-Room-Image.jpg', 'Name' => 'Brooklyn Heights Room | New York City - USA', 'Price' => 180],
-    //     ];
-
-    //     return view('rooms-list', compact('rooms'));
-    // }
 }
